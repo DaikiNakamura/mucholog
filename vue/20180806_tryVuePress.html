@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Try using the VuePress!! | Mucho Log...</title>
+    <meta name="description" content="mucho&#39;s blog">
+    <link rel="icon" type="image/png" href="/mucholog/favicon.png">
+    
+    <link rel="preload" href="/mucholog/assets/css/0.styles.b90305dd.css" as="style"><link rel="preload" href="/mucholog/assets/js/app.b967a82d.js" as="script"><link rel="preload" href="/mucholog/assets/js/5.31dad900.js" as="script"><link rel="prefetch" href="/mucholog/assets/js/2.cda51ec0.js"><link rel="prefetch" href="/mucholog/assets/js/3.b5f7abba.js"><link rel="prefetch" href="/mucholog/assets/js/4.db1fff45.js">
+    <link rel="stylesheet" href="/mucholog/assets/css/0.styles.b90305dd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/mucholog/" class="home-link router-link-active"><!----> <span class="site-name">Mucho Log...</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>MyBlog</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/mucholog/" class="sidebar-link">What is Mucho Log...</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>Vue</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/mucholog/vue/20180806_tryVuePress.html" class="active sidebar-link">Try using the VuePress!!</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mucholog/vue/20180806_tryVuePress.html#_1-install-vuepress" class="sidebar-link">1. install VuePress</a></li><li class="sidebar-sub-header"><a href="/mucholog/vue/20180806_tryVuePress.html#_2-create-package-json" class="sidebar-link">2. create Package.json</a></li><li class="sidebar-sub-header"><a href="/mucholog/vue/20180806_tryVuePress.html#_3-create-config-file" class="sidebar-link">3. create Config File</a></li><li class="sidebar-sub-header"><a href="/mucholog/vue/20180806_tryVuePress.html#run" class="sidebar-link">run</a></li><li class="sidebar-sub-header"><a href="/mucholog/vue/20180806_tryVuePress.html#build" class="sidebar-link">build</a></li><li class="sidebar-sub-header"><a href="/mucholog/vue/20180806_tryVuePress.html#deploy" class="sidebar-link">deploy</a></li><li class="sidebar-sub-header"><a href="/mucholog/vue/20180806_tryVuePress.html#memo" class="sidebar-link">memo...</a></li></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="try-using-the-vuepress"><a href="#try-using-the-vuepress" aria-hidden="true" class="header-anchor">#</a> Try using the VuePress!!</h1> <p>チュートリアルに沿って、本ブログをGitHub Pagesに
+デプロイするまでの流れをメモしておきます。</p> <h2 id="_1-install-vuepress"><a href="#_1-install-vuepress" aria-hidden="true" class="header-anchor">#</a> 1. install VuePress</h2> <p>VuePressをグローバルにインストールします。<br> <code>-D</code>を使ってprojectごとにインストールしてもOK!!</p> <div class="language- extra-class"><pre class="language-text"><code>npm install -g vuepress
+</code></pre></div><h2 id="_2-create-package-json"><a href="#_2-create-package-json" aria-hidden="true" class="header-anchor">#</a> 2. create Package.json</h2> <p>無くてもいいかな？とは思いますが、package.jsonをプロジェクト直下に作成します。<br>
+内容は以下のとおりです。</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;scripts&quot;: {
+    &quot;docs:dev&quot;: &quot;vuepress dev docs&quot;,
+    &quot;docs:build&quot;: &quot;vuepress build docs&quot;
+  }
+}
+</code></pre></div><h2 id="_3-create-config-file"><a href="#_3-create-config-file" aria-hidden="true" class="header-anchor">#</a> 3. create Config File</h2> <p>以下のディレクトリ構成を用いて、作業を進めます。(チュートリアル通り)</p> <div class="language- extra-class"><pre class="language-text"><code>.
+├─ docs
+│  ├─ README.md
+│  ├─ vue
+│     └─ 20180806_tryVuePress.md
+│  └─ .vuepress
+│     └─ config.js
+└─ package.json
+</code></pre></div><p>肝心のConfigFile</p> <div class="language- extra-class"><pre class="language-text"><code>module.exports = {
+	base: '/mucholog/', // Base URLの変更（これ書かないとGitHubPagesで正常に動きません）
+	title: 'Mucho Log...',
+	description: 'mucho\'s blog',
+	head: [　// 各ページのhead設定
+        ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+	],
+    themeConfig: { // テーマ設定
+	    sidebar: [ // サイドバーの設定
+            {
+                title: 'MyBlog',
+                collapsable: false,
+                children: [
+                    '/'
+                ]
+            },
+            {
+                title: 'Vue',
+                collapsable: true,
+                children: [
+                    'vue/20180806_tryVuePress'
+                ]
+            }
+        ],
+        lastUpdated: 'Last Updated'
+    }
+};
+</code></pre></div><h2 id="run"><a href="#run" aria-hidden="true" class="header-anchor">#</a> run</h2> <p>ローカルでの動作確認をしてみます。<br>
+2で設定したscriptを叩いてみます。</p> <div class="language- extra-class"><pre class="language-text"><code>npm run docs:dev
+</code></pre></div><p>おそらく、<a href="http://localhost:8080/" target="_blank" rel="noopener noreferrer">http://localhost:8080/<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>で表示確認ができるはずです。<br>
+ちなみに、ホットリロードに対応しているため変更内容が都度ページに反映されます。<br>
+この記事を書いてるときも、隣のブラウザにどんどん反映されてってます！</p> <h2 id="build"><a href="#build" aria-hidden="true" class="header-anchor">#</a> build</h2> <p>ビルドしてみます。</p> <div class="language- extra-class"><pre class="language-text"><code>npm run docs:build
+</code></pre></div><p>.vuepressフォルダの中にdistが出力されます。</p> <h2 id="deploy"><a href="#deploy" aria-hidden="true" class="header-anchor">#</a> deploy</h2> <p>distの内容をgithubのリポジトリにPushします。<br>
+その際、Pagesの設定を変えておきます。<br> <a href="https://daikinakamura.github.io/mucholog/" target="_blank" rel="noopener noreferrer">https://{ユーザ名}.github.io/{リポジトリ名}/<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>にアクセスします。</p> <p>見れましたか！？（反映には少し時間がかかります。）</p> <h2 id="memo"><a href="#memo" aria-hidden="true" class="header-anchor">#</a> memo...</h2> <ul><li>sidebarを作るのが面倒（自動化したい）</li> <li>blogサポートを待ったほうが良かったかも感</li> <li>頑張って続けてみる</li></ul></div> <div class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">8/6/2018, 7:08:12 PM</span></div></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/mucholog/" class="prev router-link-active">
+          What is Mucho Log...
+        </a></span> <!----></p></div> </div> <!----></div></div>
+    <script src="/mucholog/assets/js/5.31dad900.js" defer></script><script src="/mucholog/assets/js/app.b967a82d.js" defer></script>
+  </body>
+</html>
